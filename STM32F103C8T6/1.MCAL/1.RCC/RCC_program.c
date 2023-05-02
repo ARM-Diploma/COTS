@@ -130,14 +130,14 @@ uint8_t RCC_u8SetSysClock(uint8_t Copy_u8ClockType)
 
 		/*Set HSE as sysclk*/
 	case RCC_HSE_CLK :
-		CLR_BIT(RCC->CFGR,RCC_CFGR_SW0);
-		SET_BIT(RCC->CFGR,RCC_CFGR_SW1);
+		SET_BIT(RCC->CFGR,RCC_CFGR_SW0);
+		CLR_BIT(RCC->CFGR,RCC_CFGR_SW1);
 		break;
 
 		/*Set PLL as sysclk*/
 	case RCC_PLL_CLK :
-		SET_BIT(RCC->CFGR,RCC_CFGR_SW0);
-		CLR_BIT(RCC->CFGR,RCC_CFGR_SW1);
+		CLR_BIT(RCC->CFGR,RCC_CFGR_SW0);
+		SET_BIT(RCC->CFGR,RCC_CFGR_SW1);
 		break;
 
 	default : Local_u8ErrorState = 1;
@@ -201,15 +201,30 @@ uint8_t RCC_u8PLLConfig(PLL_MUL_T Copy_u8PLLMul , uint8_t Copy_u8PLLSrc)
 
 }
 
-uint8_t RCC_u8PeripheralClkControl(Peripheral_T Copy_u8PeripheralName , uint8_t Copy_u8Control)
+uint8_t RCC_u8PeripheralClkEnable(Peripheral_T Copy_u8PeripheralName ,uint8_t Copy_u8ClkType )
 {
 	uint8_t Local_u8ErrorState = OK;
-	switch(Copy_u8Control)
+	switch(Copy_u8ClkType)
 	{
 
 	case RCC_AHB_CLK  : SET_BIT(RCC->AHBENR,Copy_u8PeripheralName);break;
 	case RCC_APB1_CLK : SET_BIT(RCC->APB1ENR,Copy_u8PeripheralName);break;
-	case RCC_APB2_CLK  : SET_BIT(RCC->APB2ENR,Copy_u8PeripheralName);break;
+	case RCC_APB2_CLK : SET_BIT(RCC->APB2ENR,Copy_u8PeripheralName);break;
+	default : Local_u8ErrorState = NOK;
+	}
+	return Local_u8ErrorState;
+
+}
+
+uint8_t RCC_u8PeripheralClkDisable(Peripheral_T Copy_u8PeripheralName ,uint8_t Copy_u8ClkType )
+{
+	uint8_t Local_u8ErrorState = OK;
+	switch(Copy_u8ClkType)
+	{
+
+	case RCC_AHB_CLK  : CLR_BIT(RCC->AHBENR,Copy_u8PeripheralName);break;
+	case RCC_APB1_CLK : CLR_BIT(RCC->APB1ENR,Copy_u8PeripheralName);break;
+	case RCC_APB2_CLK : CLR_BIT(RCC->APB2ENR,Copy_u8PeripheralName);break;
 	default : Local_u8ErrorState = NOK;
 	}
 	return Local_u8ErrorState;
@@ -218,7 +233,6 @@ uint8_t RCC_u8PeripheralClkControl(Peripheral_T Copy_u8PeripheralName , uint8_t 
 uint8_t RCC_u8GetSysClk(void)
 {
 
-	/*assign in variable : return one time*/
 	uint8_t Local_u8Sysclk,Local_u8GetState0,Local_u8GetState1;
 
 	Local_u8GetState0 = GET_BIT(RCC->CFGR,RCC_CFGR_SWS0);

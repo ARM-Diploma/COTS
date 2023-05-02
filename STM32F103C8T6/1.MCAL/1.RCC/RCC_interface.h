@@ -132,10 +132,13 @@ uint8_t RCC_u8PLLConfig(PLL_MUL_T Copy_u8PLLMul , uint8_t Copy_u8PLLSrc);
 
 /*PeripheralName:
  * enum Peripheral_T
- * Control :
- * 1. ENABLE
- * 2. DISABLE*/
-uint8_t RCC_u8PeripheralClkControl(Peripheral_T Copy_u8PeripheralName , uint8_t Copy_u8Control);
+ * Clk Type :
+ * 1. RCC_AHB_CLK
+ * 2. RCC_APB1_CLK
+ * 3. RCC_APB2_CLK
+ * */
+uint8_t RCC_u8PeripheralClkEnable(Peripheral_T Copy_u8PeripheralName ,uint8_t Copy_u8ClkType );
+uint8_t RCC_u8PeripheralClkDisable(Peripheral_T Copy_u8PeripheralName ,uint8_t Copy_u8ClkType );
 
 
 /*return :
