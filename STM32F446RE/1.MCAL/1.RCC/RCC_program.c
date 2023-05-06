@@ -2,7 +2,7 @@
 #include "../Inc/BIT_MATH.h"
 #include "../Inc/STATUS.h"
 
-#include "../Inc/RCC_config.h"
+#include "../Inc/STM32F446xx.h"
 #include "../Inc/RCC_private.h"
 #include "../Inc/RCC_interface.h"
 

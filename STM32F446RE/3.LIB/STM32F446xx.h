@@ -20,19 +20,19 @@
 
 #define RCC_BASE_ADDRESS         0x40023800U
 
-/*********************  AHB2 Peripheral Base Adresses   *********************/
+/*********************  AHB2 Peripheral Base Addresses   *********************/
 
 
 
-/*********************  AHB3 Peripheral Base Adresses   *********************/
+/*********************  AHB3 Peripheral Base Addresses   *********************/
 
 
 
-/*********************  APB1 Peripheral Base Adresses   *********************/
+/*********************  APB1 Peripheral Base Addresses   *********************/
 
 
 
-/*********************  APB2 Peripheral Base Adresses   *********************/
+/*********************  APB2 Peripheral Base Addresses   *********************/
 
 
 /*********************  GPIO Register Definition Structure   *********************/
@@ -52,14 +52,14 @@ typedef struct
 
 
 /*********************  GPIO Register Definition    *********************/
-#define GPIOA            (GPIO_RegDef_T  *)(GPIOA_BASE_ADDRESS)
-#define GPIOB            (GPIO_RegDef_T  *)(GPIOB_BASE_ADDRESS)
-#define GPIOC            (GPIO_RegDef_T  *)(GPIOC_BASE_ADDRESS)
-#define GPIOD            (GPIO_RegDef_T  *)(GPIOD_BASE_ADDRESS)
-#define GPIOE            (GPIO_RegDef_T  *)(GPIOE_BASE_ADDRESS)
-#define GPIOF            (GPIO_RegDef_T  *)(GPIOF_BASE_ADDRESS)
-#define GPIOG            (GPIO_RegDef_T  *)(GPIOG_BASE_ADDRESS)
-#define GPIOH            (GPIO_RegDef_T  *)(GPIOH_BASE_ADDRESS)
+#define GPIOA            ((GPIO_RegDef_T  *)GPIOA_BASE_ADDRESS)
+#define GPIOB            ((GPIO_RegDef_T  *)GPIOB_BASE_ADDRESS)
+#define GPIOC            ((GPIO_RegDef_T  *)GPIOC_BASE_ADDRESS)
+#define GPIOD            ((GPIO_RegDef_T  *)GPIOD_BASE_ADDRESS)
+#define GPIOE            ((GPIO_RegDef_T  *)GPIOE_BASE_ADDRESS)
+#define GPIOF            ((GPIO_RegDef_T  *)GPIOF_BASE_ADDRESS)
+#define GPIOG            ((GPIO_RegDef_T  *)GPIOG_BASE_ADDRESS)
+#define GPIOH            ((GPIO_RegDef_T  *)GPIOH_BASE_ADDRESS)
 
 /*********************  RCC Register Definition Structure   *********************/
 
@@ -109,7 +109,7 @@ typedef struct
 
 /*********************  RCC Register Definition    *********************/
 
-#define RCC						(RCC_RegDef_T *)(RCC_BASE_ADDRESS)
+#define RCC						((RCC_RegDef_T *)RCC_BASE_ADDRESS)
 
 
 /*********	CR register bits	*********/
