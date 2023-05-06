@@ -23,7 +23,7 @@ static GPIO_RegDef_T *GPIOPort[GPIO_PERIPHERAL_NUM] = {GPIOA ,GPIOB ,GPIOC ,GPIO
  * @param[in]	PinConfig : the initialization values of the pin
  * @retval		ErrorStatus
  * */
-uint8_t GPIO_u8PinInit(const PinConfig_T *PinConfig)
+uint8_t GPIO_u8PinInit(const GPIO_PinConfig_T *PinConfig)
 {
 	uint8_t Local_u8ErrorState = OK,
 			Local_u8RegNum,
@@ -87,7 +87,9 @@ uint8_t GPIO_u8PinInit(const PinConfig_T *PinConfig)
 /*
  * @fn 			GPIO_u8SetPinValue
  * @brief 		the function set the GPIO pin according to the input value
- * @param[in]	Port ,PinNum ,PinValue
+ * @param[in]	Port : the port number, get options @Port_T enum
+ * @param[in]	PinNum : the pin number ,get options @Pin_T enum
+ * @param[in]	PinValue : the output value ,get options @PinVal_T
  * @retval		ErrorStatus
  * */
 uint8_t GPIO_u8SetPinValue(Port_T Port , Pin_T PinNum , PinVal_T PinValue)
@@ -109,6 +111,14 @@ uint8_t GPIO_u8SetPinValue(Port_T Port , Pin_T PinNum , PinVal_T PinValue)
 	return Local_u8ErrorState;
 }
 
+/****************************************************************************/
+/*
+ * @fn 			GPIO_u8TogglePinValue
+ * @brief 		the function toggle the GPIO pin
+ * @param[in]	Port : the port number, get options @Port_T enum
+ * @param[in]	PinNum : the pin number ,get options @Pin_T enum
+ * @retval		ErrorStatus
+ * */
 uint8_t GPIO_u8TogglePinValue(Port_T Port , Pin_T PinNum)
 {
 	uint8_t  Local_u8ErrorState = OK;
@@ -128,6 +138,15 @@ uint8_t GPIO_u8TogglePinValue(Port_T Port , Pin_T PinNum)
 	return Local_u8ErrorState;
 }
 
+/****************************************************************************/
+/*
+ * @fn 			GPIO_u8ReadPinValue
+ * @brief 		the function read the GPIO input pin
+ * @param[in]	Port : the port number, get options @Port_T enum
+ * @param[in]	PinNum : the pin number ,get options @Pin_T enum
+ * @param[out]	PinValue : the reading pin value ,get options @PinVal_T
+ * @retval		ErrorStatus
+ * */
 uint8_t GPIO_u8ReadPinValue(Port_T Port , Pin_T PinNum , PinVal_T *PinValue)
 {
 	uint8_t  Local_u8ErrorState = OK;
