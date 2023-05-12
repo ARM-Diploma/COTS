@@ -1,6 +1,10 @@
 #ifndef STM32F103XX_H_
 #define STM32F103XX_H_
 
+/*********************  Core Peripherals Base Addresses   *********************/
+
+#define SYSTICK_BASE_ADDRESS	0xE000E010UL
+
 /*********************  Various Memories Base Adresses   *********************/
 
 #define FLASH_BASE_ADDRESS      0x40022000UL
@@ -25,6 +29,23 @@
 #define GPIOF_BASE_ADDRESS       0x40011C00U
 #define GPIOG_BASE_ADDRESS       0x40012000U
 
+
+/*********************  SysTick Register Definition Structure   *********************/
+typedef struct
+{
+	volatile uint32_t CSR;
+	volatile uint32_t RVR;
+	volatile uint32_t CVR;
+	volatile uint32_t CALIB;
+
+}SysTick_RegDef_T;
+
+#define SYSTICK			((SysTick_RegDef_T *)SYSTICK_BASE_ADDRESS)
+
+/*********	SYST_CSR register bits	*********/
+#define SYST_CSR_ENB			0U		/*Timer Enable bit*/
+#define SYST_CSR_CLKSOURCE		2U		/*Clk Source selection bit*/
+#define SYST_COUNTFLAG			16U		/*Counter Flag bit*/
 
 /*********************  GPIO Register Definition Structure   *********************/
 typedef struct
