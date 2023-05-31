@@ -1,13 +1,18 @@
 #ifndef STM32F446XX_H_
 #define STM32F446XX_H_
 
-/*********************  Various Memories Base Adresses   *********************/
+/*********************  Core Peripherals Base Addresses   *********************/
+
+#define SYSTICK_BASE_ADDRESS	0xE000E010UL
+
+
+/*********************  Various Memories Base Addresses   *********************/
 
 #define FLASH_BASE_ADDRESS      0x08000000UL
 #define SRAM_BASE_ADDRESS       0x20000000UL  
 #define ROM_BASE_ADDRESS        0x1FFF0000UL  
 
-/*********************  AHB1 Peripheral Base Adresses   *********************/
+/*********************  AHB1 Peripheral Base Addresses   *********************/
 
 #define GPIOA_BASE_ADDRESS       0x40020000U
 #define GPIOB_BASE_ADDRESS       0x40020400U
@@ -33,6 +38,26 @@
 
 
 /*********************  APB2 Peripheral Base Addresses   *********************/
+
+
+
+/*********************  SysTick Register Definition Structure   *********************/
+typedef struct
+{
+	volatile uint32_t CSR;
+	volatile uint32_t RVR;
+	volatile uint32_t CVR;
+	volatile uint32_t CALIB;
+
+}SysTick_RegDef_T;
+
+#define SYSTICK			((SysTick_RegDef_T *)SYSTICK_BASE_ADDRESS)
+
+/*********	SYST_CSR register bits	*********/
+#define SYST_CSR_ENB			0U		/*Timer Enable bit*/
+#define SYST_CSR_CLKSOURCE		2U		/*Clk Source selection bit*/
+#define SYST_COUNTFLAG			16U		/*Counter Flag bit*/
+
 
 
 /*********************  GPIO Register Definition Structure   *********************/
@@ -139,22 +164,6 @@ typedef struct
 #define RCC_CFGR_SWS0			2	/*System clock status switch bit0*/
 #define RCC_CFGR_SWS1			3	/*System clock status switch bit1*/
 
-/*********	Some Important	Parameters	*********/
 
-#define PLL_M_DIV_SHIFT			0
-#define PLLMUL_SHIFT			6
-#define PLL_P_DIV_SHIFT			16
-#define PLL_R_DIV_SHIFT			28
-
-#define PLL_MASK				0x00BC8000
-
-#define PLL_MUL_MIN				50
-#define PLL_MUL_MAX				432
-
-#define PLL_M_DIV_MIN			2
-#define PLL_M_DIV_MAX			63
-
-#define PLL_R_DIV_MIN			2
-#define PLL_R_DIV_MAX			7
 
 #endif
