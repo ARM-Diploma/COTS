@@ -1,7 +1,7 @@
 #include <stdint.h>
 
-#include "STM32F446xx.h"
 #include "STATUS.h"
+#include "STM32F446xx.h"
 
 #include "EXTI_interface.h"
 #include "EXTI_private.h"
@@ -81,25 +81,25 @@ uint8_t EXTI_u8SetTrigSrc(EXTI_LineNum Copy_LineNum,EXTI_TrigSrc_T Copy_TrigSrc)
 	uint8_t Local_u8ErrorState = OK;
 
 	/* 1. Setting Trigger Source */
-	switch(Copy_Config->TrigSrc)
+	switch(Copy_TrigSrc)
 	{
 
 	/* Set Rising and Clear Falling*/
 	case RISING_TRIG:
-		EXTI->RTSR |= (1 << (LineNum));
-		EXTI->FTSR &= (~(1 << (LineNum)));
+		EXTI->RTSR |= (1 << (Copy_LineNum));
+		EXTI->FTSR &= (~(1 << (Copy_LineNum)));
 		break;
 
 		/* Set Falling and Clear Rising*/
 	case FALLING_TRIG:
-		EXTI->FTSR |= (1 << (LineNum));
-		EXTI->RTSR &= (~(1 << (LineNum)));
+		EXTI->FTSR |= (1 << (Copy_LineNum));
+		EXTI->RTSR &= (~(1 << (Copy_LineNum)));
 		break;
 
 		/* Set Rising & Falling*/
 	case FALLING_RISING_TRIG:
-		EXTI->RTSR |= (1 << (LineNum));
-		EXTI->FTSR |= (1 << (LineNum));
+		EXTI->RTSR |= (1 << (Copy_LineNum));
+		EXTI->FTSR |= (1 << (Copy_LineNum));
 		break;
 
 	default : Local_u8ErrorState = NOK;
@@ -109,13 +109,13 @@ uint8_t EXTI_u8SetTrigSrc(EXTI_LineNum Copy_LineNum,EXTI_TrigSrc_T Copy_TrigSrc)
 }
 void EXTI_u8EnableInt(EXTI_LineNum Copy_LineNum)
 {
-	EXTI->IMR |= (1 << (Copy_Num));
+	EXTI->IMR |= (1 << (Copy_LineNum));
 }
 
 void EXTI_u8DisableInt(EXTI_LineNum Copy_LineNum)
 {
 
-	EXTI->IMR &= (~(1 << (Copy_Num)));
+	EXTI->IMR &= (~(1 << (Copy_LineNum)));
 }
 
 
