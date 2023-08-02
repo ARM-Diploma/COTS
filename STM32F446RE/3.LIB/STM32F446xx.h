@@ -38,8 +38,8 @@
 
 
 /*********************  APB2 Peripheral Base Addresses   *********************/
-
-
+#define EXTI_BASE_ADDRESS		0x40013C00U 		
+#define SYSCFG_BASE_ADDRESS		0x40013800U
 
 /*********************  SysTick Register Definition Structure   *********************/
 typedef struct
@@ -165,5 +165,37 @@ typedef struct
 #define RCC_CFGR_SWS1			3	/*System clock status switch bit1*/
 
 
+/*********************  EXTI Register Definition Structure   *********************/
+typedef struct
+{
+	volatile uint32_t IMR ;
+	volatile uint32_t EMR ;
+	volatile uint32_t RTSR ;
+	volatile uint32_t FTSR ;
+	volatile uint32_t SWIER ;
+	volatile uint32_t PR ;
 
+}EXTI_RegDef_T;
+
+/*********************  EXTI Register Definition    *********************/
+
+#define EXTI						((EXTI_RegDef_T *)EXTI_BASE_ADDRESS)
+
+
+/*********************  EXTI Register Definition Structure   *********************/
+typedef struct 
+{
+	volatile uint32_t MEMRMP;
+	volatile uint32_t PMC;
+	volatile uint32_t CR[4];
+	volatile uint32_t RESERVED_1[2];
+	volatile uint32_t CMPCR;
+	volatile uint32_t RESERVED_2[2];
+	volatile uint32_t CFGR;
+
+
+}SYSCFG_Reg_T;
+
+/*********************  EXTI Register Definition    *********************/
+#define SYSCFG						((SYSCFG_Reg_T *)SYSCFG_BASE_ADDRESS)
 #endif
